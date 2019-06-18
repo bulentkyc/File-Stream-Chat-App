@@ -23,10 +23,15 @@ const server = http.createServer((req, res)=>{
         
     }
     else if(req.url == '/setChat'){
-        console.log(req);
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write('<html><body><p>Your Request has been received!</p></body></html>');
-        res.end();
+        var body = "";
+        req.on('data', function (chunk) {
+            body += chunk;
+        });
+        req.on('end', function () {
+            console.log('POSTed: ' + body);
+            res.writeHead(200);
+            res.end('<html><body><p>Your Request has been received!</p></body></html>');
+        });
     }
 });
 
