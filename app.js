@@ -20,6 +20,13 @@ const server = http.createServer((req, res)=>{
             res.write(buffer);
             res.end();
         });
+        
+    }
+    else if(req.url == '/setChat'){
+        console.log(req);
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write('<html><body><p>Your Request has been received!</p></body></html>');
+        res.end();
     }
 });
 
